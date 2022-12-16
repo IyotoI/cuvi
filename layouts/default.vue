@@ -1,8 +1,8 @@
 <template>
   <v-app dark>
-    <v-toolbar max-height="100px">
-      <!--  -->
-    </v-toolbar>
+    <v-app-bar app max-height="100px" style="background: #4272a3">
+      <!-- -->
+    </v-app-bar>
 
     <v-main>
       <v-container>
@@ -10,14 +10,17 @@
       </v-container>
     </v-main>
 
-    <!-- Navegacion -->
-    <v-toolbar max-height="100px">
-      <v-tabs height="100" fixed-tabs v-if="isViewLogin">
-        <v-tab v-for="(item, i) in itemsNavigation" :key="i">
-          <v-icon large color="green darken-2" v-text="`mdi-${item}`" />
+    <v-footer app class="pa-0" min-height="50px" style="background: #4272a3">
+      <v-tabs fixed-tabs v-if="isViewLogin">
+        <v-tab
+          v-for="(item, i) in itemsNavigation"
+          :key="i"
+          style="background: #4272a3"
+        >
+          <v-icon large color="white" v-text="`mdi-${item}`" />
         </v-tab>
       </v-tabs>
-    </v-toolbar>
+    </v-footer>
   </v-app>
 </template>
 
