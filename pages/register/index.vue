@@ -1,9 +1,3 @@
 <template>
-  <h1>Register</h1>
+  <Form nameForm="register" />
 </template>
-
-<script>
-export default {};
-</script>
-
-<style></style>

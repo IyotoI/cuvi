@@ -1,9 +1,3 @@
 <template>
-  <h1>Curriculum</h1>
+  <Form nameForm="personalInformation" />
 </template>
-
-<script>
-export default {};
-</script>
-
-<style></style>
