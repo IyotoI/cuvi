@@ -65,6 +65,11 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
         },
+        light: {
+          // Outbound and Inbound
+          primary: "#5FA52D",
+          secondary: "#4272A3",
+        },
       },
     },
   },

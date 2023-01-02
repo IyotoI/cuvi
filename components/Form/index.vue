@@ -27,6 +27,14 @@ export default {
           formDisplay = "FormPageCurriculumAcademicBackground";
           break;
 
+        case "workExperience":
+          formDisplay = "FormPageCurriculumWorkExperience";
+          break;
+
+        case "totalTimeExperience":
+          formDisplay = "FormPageCurriculumTotalTimeExperience";
+          break;
+
         default:
           formDisplay = "";
           break;

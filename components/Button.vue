@@ -14,7 +14,7 @@
       {{ label }}
     </template>
 
-    <v-icon v-else :large="largeIcon" dark v-text="`mdi-${icon}`" />
+    <v-icon v-else :large="largeIcon" v-text="`mdi-${icon}`" left />
   </v-btn>
 </template>
 
