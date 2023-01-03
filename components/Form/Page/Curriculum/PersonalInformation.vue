@@ -1,42 +1,192 @@
 <template>
-  <v-form>
+  <v-form v-model="isFormValid" @submit.prevent="sendForm">
     <v-row dense>
+      <!-- Datos personales -->
       <v-col cols="12">
-        <FormInput label="Primer apellido" />
+        <FormInput
+          :model.sync="payload.personal_data.photo"
+          :rules="rules.photo"
+          label="Foto"
+        />
       </v-col>
       <v-col cols="12">
-        <FormInput label="Segundo apellido (o de casada)" />
+        <FormInput
+          :model.sync="payload.personal_data.first_secondname"
+          :rules="rules.first_secondname"
+          label="Primer apellido"
+        />
       </v-col>
       <v-col cols="12">
-        <FormSelect label="Tipo de documento" />
+        <FormInput
+          :model.sync="payload.personal_data.second_secondname"
+          :rules="rules.second_secondname"
+          label="Segundo apellido (o de casada)"
+        />
       </v-col>
       <v-col cols="12">
-        <FormInput label="Documento" />
+        <FormInput
+          :model.sync="payload.personal_data.name"
+          :rules="rules.name"
+          label="Nombre"
+        />
       </v-col>
       <v-col cols="12">
-        <FormSelect label="Sexo" />
+        <FormSelect
+          :model.sync="payload.personal_data.typeid"
+          :items="items.typeid"
+          :rules="rules.typeid"
+          label="Tipo de documento"
+        />
       </v-col>
       <v-col cols="12">
-        <FormSelect label="Nacionalidad" />
+        <FormInput
+          :model.sync="payload.personal_data.id_number"
+          :rules="rules.id_number"
+          label="Documento"
+        />
       </v-col>
       <v-col cols="12">
-        <FormInput label="Libreta militar" />
+        <FormSelect
+          :model.sync="payload.personal_data.sex"
+          :rules="rules.sex"
+          label="Sexo"
+          :items="items.sex"
+        />
       </v-col>
       <v-col cols="12">
-        <FormInput label="Lugar de nacimiento" />
+        <FormSelect
+          :model.sync="payload.personal_data.nacionality"
+          :items="items.nacionality"
+          :rules="rules.nacionality"
+          label="Nacionalidad"
+        />
       </v-col>
       <v-col cols="12">
-        <FormInput label="Fecha de nacimiento" />
+        <FormSelect
+          :model.sync="payload.personal_data.country"
+          :items="items.country"
+          :rules="rules.country"
+          label="Pais"
+        />
+      </v-col>
+      <!-- Libreta militar -->
+      <v-col class="text-center mb-6">
+        <h2>Libreta militar</h2>
       </v-col>
       <v-col cols="12">
-        <FormInput label="Dirección de correspondencia" />
+        <FormSelect
+          :items="items.militaryCardType"
+          :model.sync="payload.personal_data.military_card.tipo"
+          :rules="rules.military_card.tipo"
+          label="Tipo"
+        />
+      </v-col>
+      <v-col cols="12">
+        <FormInput
+          :model.sync="payload.personal_data.military_card.number"
+          :rules="rules.military_card.number"
+          label="Numero"
+        />
+      </v-col>
+      <v-col cols="12">
+        <FormInput
+          :model.sync="payload.personal_data.military_card.dm"
+          :rules="rules.military_card.dm"
+          label="DM"
+        />
+      </v-col>
+      <!-- Fecha y lugar de nacimiento -->
+      <v-col class="text-center mb-6">
+        <h2>Fecha y lugar de nacimiento</h2>
+      </v-col>
+      <v-col cols="12">
+        <CalendarInput
+          label="Fecha de nacimiento"
+          :model.sync="dateOfBirth"
+          :rules="rules.date_place_birth_place.date"
+        />
+        <!-- <FormInput
+          :model.sync="dateOfBirth"
+          :rules="rules.date_place_birth_place.date"
+          label="Fecha de nacimiento"
+        /> -->
+      </v-col>
+      <v-col cols="12">
+        <FormSelect
+          :items="items.country"
+          :model.sync="payload.personal_data.date_place_birth.place.country"
+          :rules="rules.date_place_birth_place.country"
+          label="Pais"
+        />
+      </v-col>
+      <v-col cols="12">
+        <FormInput
+          :model.sync="payload.personal_data.date_place_birth.place.depto"
+          :rules="rules.date_place_birth_place.depto"
+          label="Departamento"
+        />
+      </v-col>
+      <v-col cols="12">
+        <FormInput
+          :model.sync="payload.personal_data.date_place_birth.place.municipio"
+          :rules="rules.date_place_birth_place.municipio"
+          label="Municipio"
+        />
+      </v-col>
+      <!-- Dirección de correspondecia -->
+      <v-col class="text-center mb-6">
+        <h2>Dirección de correspondecia</h2>
+      </v-col>
+      <v-col cols="12">
+        <FormInput
+          :model.sync="payload.personal_data.correspondence_address.address"
+          :rules="rules.correspondence_address.address"
+          label="Dirección"
+        />
+      </v-col>
+      <v-col cols="12">
+        <FormSelect
+          :items="items.country"
+          :model.sync="payload.personal_data.correspondence_address.country"
+          :rules="rules.correspondence_address.country"
+          label="Pais"
+        />
+      </v-col>
+      <v-col cols="12">
+        <FormInput
+          :model.sync="payload.personal_data.correspondence_address.depto"
+          :rules="rules.correspondence_address.depto"
+          label="Departamento"
+        />
+      </v-col>
+      <v-col cols="12">
+        <FormInput
+          :model.sync="payload.personal_data.correspondence_address.municipio"
+          :rules="rules.correspondence_address.municipio"
+          label="Municipio"
+        />
+      </v-col>
+      <v-col cols="12">
+        <FormInput
+          :model.sync="payload.personal_data.correspondence_address.phone"
+          :rules="rules.correspondence_address.phone"
+          label="Telefono"
+        />
+      </v-col>
+      <v-col cols="12">
+        <FormInput
+          :model.sync="payload.personal_data.correspondence_address.email"
+          :rules="rules.correspondence_address.email"
+          label="Correo"
+        />
       </v-col>
       <v-col cols="12" class="d-flex justify-center">
         <Button
+          :disabled="!isFormValid"
           class="white--text"
+          type="submit"
           label="Guardar"
           color="#5FA52D"
-          @action="goBack"
         />
       </v-col>
     </v-row>
@@ -44,10 +194,110 @@
 </template>
 
 <script>
+import { CuviController } from "~/controllers/cuvi.controller";
+
 export default {
+  data() {
+    return {
+      dateOfBirth: "",
+      isFormValid: true,
+      items: {
+        typeid: ["cc", "ce", "pas"],
+        sex: ["m", "f"],
+        militaryCardType: ["primera", "segunda"],
+        country: ["Colombia"],
+        nacionality: ["col", "extranjero"],
+      },
+      rules: {
+        photo: [(v) => !!v || "La foto es requerida"],
+        first_secondname: [(v) => !!v || "El primer apellido es requerido"],
+        second_secondname: [(v) => !!v || "El segundo apellido es requerido"],
+        name: [(v) => !!v || "El nombre es requerido"],
+        typeid: [(v) => !!v || "El tipo de documento es requerido"],
+        id_number: [(v) => !!v || "EL numero de documento es requerido"],
+        sex: [(v) => !!v || "El sexo es requerido"],
+        nacionality: [(v) => !!v || "La nacionalidad es requerida"],
+        country: [(v) => !!v || "El pais es requerido"],
+        military_card: {
+          tipo: [(v) => !!v || "El tipo de libreta es requerido"],
+          number: [(v) => !!v || "El numero es requerido"],
+          dm: [(v) => !!v || "El dm es requerido"],
+        },
+        date_place_birth_place: {
+          date: [(v) => !!v || "La fecha de nacimiento es requerida"],
+          country: [(v) => !!v || "El pais es requerido"],
+          depto: [(v) => !!v || "El departamento es requerido"],
+          municipio: [(v) => !!v || "El municipio es requerido"],
+        },
+        correspondence_address: {
+          address: [(v) => !!v || "La direccion es requerida"],
+          country: [(v) => !!v || "El pais es requerido"],
+          depto: [(v) => !!v || "El departamento es requerido"],
+          municipio: [(v) => !!v || "El municipio es requerido"],
+          phone: [(v) => !!v || "El telefono es requerido"],
+          email: [(v) => !!v || "El correo es requerido"],
+        },
+      },
+      payload: {
+        personal_data: {
+          photo: "",
+          first_secondname: "",
+          second_secondname: "",
+          name: "",
+          typeid: "",
+          id_number: "",
+          sex: "",
+          nacionality: "",
+          country: "",
+          military_card: {
+            tipo: "",
+            number: "",
+            dm: "",
+          },
+          date_place_birth: {
+            date: {
+              day: "",
+              month: "",
+              year: "",
+            },
+            place: {
+              country: "",
+              depto: "",
+              municipio: "",
+            },
+          },
+          correspondence_address: {
+            address: "",
+            country: "",
+            depto: "",
+            municipio: "",
+            phone: "",
+            email: "",
+          },
+        },
+      },
+    };
+  },
   methods: {
+    postCuvi: CuviController.post.cuvi,
+
     goBack() {
       $nuxt.$router.push({ name: "curriculum" });
+    },
+
+    sendForm() {
+      this.postCuvi(this.payload);
+    },
+  },
+  watch: {
+    dateOfBirth(val) {
+      const obj = {
+        day: val.split("-")[2],
+        month: val.split("-")[1],
+        year: val.split("-")[0],
+      };
+
+      this.payload.personal_data.date_place_birth.date = obj;
     },
   },
 };

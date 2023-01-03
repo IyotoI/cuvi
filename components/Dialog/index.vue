@@ -59,7 +59,7 @@ export default {
 <style>
 .pageda {
   text-align: center;
-  height: calc(100vh - auto);
+  height: auto;
   overflow: scroll;
   padding: 0px 12% 0px 12%;
 }

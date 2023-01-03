@@ -30,6 +30,7 @@
           block
           class="white--text"
           color="#5FA52D"
+          :disabled="isPersonalInformation"
           @action="selectForm(2)"
         />
       </v-col>
@@ -39,6 +40,7 @@
           block
           class="white--text"
           color="#5FA52D"
+          :disabled="isPersonalInformation"
           @action="selectForm(3)"
         />
       </v-col>
@@ -47,6 +49,7 @@
           label="Tiempo total de experiencia"
           block
           class="white--text"
+          :disabled="isPersonalInformation"
           color="#5FA52D"
           @action="selectForm(4)"
         />
@@ -61,16 +64,33 @@
 </template>
 
 <script>
+import { CuviController } from "~/controllers/cuvi.controller";
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
       idFormSelected: 0,
+      isPersonalInformation: true,
     };
   },
+  created() {
+    const idUser = this.dataUser.user._id;
+    if (this.getCuvi(idUser)) {
+      this.isPersonalInformation = true;
+    } else {
+      this.isPersonalInformation = false;
+    }
+  },
   methods: {
+    getCuvi: CuviController.get.cuvi,
+
     selectForm(val) {
       this.idFormSelected = val;
     },
+  },
+  computed: {
+    ...mapGetters("localStorage", ["dataUser"]),
   },
   watch: {
     idFormSelected(val) {

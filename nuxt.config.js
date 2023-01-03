@@ -27,7 +27,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: ["~/plugins/axios"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -42,6 +42,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
+    "nuxt-vuex-localstorage",
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -76,4 +77,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  env: {
+    BACKEND_API_URL_CUVI: process.env.BACKEND_API_URL_CUVI,
+  },
 };
