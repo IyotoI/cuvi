@@ -12,6 +12,7 @@ export const CuviController = {
   },
   get: {
     cuvi: async (idCuvi) => {
+      console.log("Hello world");
       const dataUser = $nuxt.$store.getters["localStorage/dataUser"];
       $nuxt.$api.setHeader("Authorization", `Bearer ${dataUser.token}`);
 
