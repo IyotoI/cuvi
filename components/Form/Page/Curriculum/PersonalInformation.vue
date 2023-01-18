@@ -195,6 +195,7 @@
 
 <script>
 import { CuviController } from "~/controllers/cuvi.controller";
+import { Regex } from "~/plugins/regex.js";
 
 export default {
   data() {
@@ -210,32 +211,77 @@ export default {
       },
       rules: {
         photo: [(v) => !!v || "La foto es requerida"],
-        first_secondname: [(v) => !!v || "El primer apellido es requerido"],
-        second_secondname: [(v) => !!v || "El segundo apellido es requerido"],
-        name: [(v) => !!v || "El nombre es requerido"],
+        first_secondname: [
+          (v) => !!v || "El primer apellido es requerido",
+          (v) => Regex.onlyLettersAndSpaces.test(v) || "Solo se aceptan letras",
+        ],
+        second_secondname: [
+          (v) => !!v || "El segundo apellido es requerido",
+          (v) => Regex.onlyLettersAndSpaces.test(v) || "Solo se aceptan letras",
+        ],
+        name: [
+          (v) => !!v || "El nombre es requerido",
+          (v) => Regex.onlyLettersAndSpaces.test(v) || "Solo se aceptan letras",
+        ],
         typeid: [(v) => !!v || "El tipo de documento es requerido"],
-        id_number: [(v) => !!v || "EL numero de documento es requerido"],
+        id_number: [
+          (v) => !!v || "EL numero de documento es requerido",
+          (v) => Regex.onlyNumbers.test(v) || "Solo se aceptan números",
+        ],
         sex: [(v) => !!v || "El sexo es requerido"],
         nacionality: [(v) => !!v || "La nacionalidad es requerida"],
         country: [(v) => !!v || "El pais es requerido"],
         military_card: {
           tipo: [(v) => !!v || "El tipo de libreta es requerido"],
-          number: [(v) => !!v || "El numero es requerido"],
-          dm: [(v) => !!v || "El dm es requerido"],
+          number: [
+            (v) => !!v || "El numero es requerido",
+            (v) => Regex.onlyNumbers.test(v) || "Solo se aceptan números",
+          ],
+          dm: [
+            (v) => !!v || "El dm es requerido",
+            (v) =>
+              Regex.onlyLettersAndSpaces.test(v) || "Solo se aceptan letras",
+          ],
         },
         date_place_birth_place: {
           date: [(v) => !!v || "La fecha de nacimiento es requerida"],
           country: [(v) => !!v || "El pais es requerido"],
-          depto: [(v) => !!v || "El departamento es requerido"],
-          municipio: [(v) => !!v || "El municipio es requerido"],
+          depto: [
+            (v) => !!v || "El departamento es requerido",
+            (v) =>
+              Regex.onlyLettersAndSpaces.test(v) || "Solo se aceptan letras",
+          ],
+          municipio: [
+            (v) => !!v || "El municipio es requerido",
+            (v) =>
+              Regex.onlyLettersAndSpaces.test(v) || "Solo se aceptan letras",
+          ],
         },
         correspondence_address: {
-          address: [(v) => !!v || "La direccion es requerida"],
+          address: [
+            (v) => !!v || "La direccion es requerida",
+            (v) =>
+              Regex.onlyLettersAndSpaces.test(v) || "Solo se aceptan letras",
+          ],
           country: [(v) => !!v || "El pais es requerido"],
-          depto: [(v) => !!v || "El departamento es requerido"],
-          municipio: [(v) => !!v || "El municipio es requerido"],
-          phone: [(v) => !!v || "El telefono es requerido"],
-          email: [(v) => !!v || "El correo es requerido"],
+          depto: [
+            (v) => !!v || "El departamento es requerido",
+            (v) =>
+              Regex.onlyLettersAndSpaces.test(v) || "Solo se aceptan letras",
+          ],
+          municipio: [
+            (v) => !!v || "El municipio es requerido",
+            (v) =>
+              Regex.onlyLettersAndSpaces.test(v) || "Solo se aceptan letras",
+          ],
+          phone: [
+            (v) => !!v || "El telefono es requerido",
+            (v) => Regex.onlyNumbers.test(v) || "Solo se aceptan números",
+          ],
+          email: [
+            (v) => !!v || "El correo es requerido",
+            (v) => Regex.onlyEmail.test(v) || "El correo es invalido",
+          ],
         },
       },
       payload: {
