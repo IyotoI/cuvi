@@ -9,7 +9,7 @@
           <Nuxt />
         </div>
         <div class="bottom-section">
-          <v-tabs hide-slider="false" grow>
+          <v-tabs grow>
             <template v-if="isViewLogin">
               <v-tab
                 v-for="(item, i) in itemsNavigation"
@@ -32,7 +32,7 @@ export default {
   name: "DefaultLayout",
   data() {
     return {
-      itemsNavigation: ["account", "factory", "forum", "exit-to-app"],
+      // itemsNavigation: ["account", "factory", "forum", "exit-to-app"],
       itemsNavigation: [
         // { icon: "account", route: "a" },
         // { icon: "factory", route: "b" },

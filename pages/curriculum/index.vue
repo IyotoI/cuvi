@@ -74,12 +74,12 @@ export default {
       isPersonalInformation: true,
     };
   },
-  created() {
+  async created() {
     const idUser = this.dataUser.user._id;
-    if (this.getCuvi(idUser)) {
+    const dataUser = await this.getCuvi(idUser);
+
+    if (dataUser !== null) {
       this.isPersonalInformation = true;
-    } else {
-      this.isPersonalInformation = false;
     }
   },
   methods: {
