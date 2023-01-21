@@ -79,7 +79,7 @@ export default {
     const dataUser = await this.getCuvi(idUser);
 
     if (dataUser !== null) {
-      this.isPersonalInformation = true;
+      this.isPersonalInformation = false;
     }
   },
   methods: {
