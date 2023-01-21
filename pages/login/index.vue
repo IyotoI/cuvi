@@ -1,14 +1,14 @@
 <template>
   <div class="page">
     <v-row>
-      <v-col cols="12" class="mb-2">
+      <!-- <v-col cols="12" class="mb-2">
         <v-img
           lazy-src="img/hiring.svg"
           class="mx-auto"
           max-width="140"
           src="img/logo_business.svg"
         ></v-img>
-      </v-col>
+      </v-col> -->
       <v-col cols="12">
         <Form nameForm="login" />
       </v-col>
