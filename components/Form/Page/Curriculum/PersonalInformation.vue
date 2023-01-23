@@ -139,44 +139,44 @@
       </v-col>
       <v-col cols="12">
         <FormInput
-          :model.sync="payload.personal_data.correspondence_address.address"
-          :rules="rules.correspondence_address.address"
+          :model.sync="payload.personal_data.post_address.address"
+          :rules="rules.post_address.address"
           label="Dirección"
         />
       </v-col>
       <v-col cols="12">
         <FormSelect
           :items="items.country"
-          :model.sync="payload.personal_data.correspondence_address.country"
-          :rules="rules.correspondence_address.country"
+          :model.sync="payload.personal_data.post_address.country"
+          :rules="rules.post_address.country"
           label="Pais"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
-          :model.sync="payload.personal_data.correspondence_address.depto"
-          :rules="rules.correspondence_address.depto"
+          :model.sync="payload.personal_data.post_address.depto"
+          :rules="rules.post_address.depto"
           label="Departamento"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
-          :model.sync="payload.personal_data.correspondence_address.municipio"
-          :rules="rules.correspondence_address.municipio"
+          :model.sync="payload.personal_data.post_address.municipio"
+          :rules="rules.post_address.municipio"
           label="Municipio"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
-          :model.sync="payload.personal_data.correspondence_address.phone"
-          :rules="rules.correspondence_address.phone"
+          :model.sync="payload.personal_data.post_address.phone"
+          :rules="rules.post_address.phone"
           label="Telefono"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
-          :model.sync="payload.personal_data.correspondence_address.email"
-          :rules="rules.correspondence_address.email"
+          :model.sync="payload.personal_data.post_address.email"
+          :rules="rules.post_address.email"
           label="Correo"
         />
       </v-col>
@@ -258,7 +258,7 @@ export default {
               Regex.onlyLettersAndSpaces.test(v) || "Solo se aceptan letras",
           ],
         },
-        correspondence_address: {
+        post_address: {
           address: [
             (v) => !!v || "La direccion es requerida",
             (v) =>
@@ -309,7 +309,7 @@ export default {
               municipio: "",
             },
           },
-          correspondence_address: {
+          post_address: {
             address: "",
             country: "",
             depto: "",
@@ -336,21 +336,13 @@ export default {
     ...mapGetters("localStorage", ["personalData"]),
   },
   mounted() {
-    Object.assign(this.payload.personal_data, this.personalData);
+    const object = JSON.parse(JSON.stringify(this.personalData));
+    this.payload.personal_data = object;
   },
   watch: {
-    // dateOfBirth(val) {
-    //   const obj = {
-    //     day: val.split("-")[2],
-    //     month: val.split("-")[1],
-    //     year: val.split("-")[0],
-    //   };
-
-    //   this.payload.personal_data.date_place_birth.date = obj;
-    // },
-    "payload.personal_data.correspondence_address.phone"() {
-      this.payload.personal_data.correspondence_address.phone = Number(
-        this.payload.personal_data.correspondence_address.phone
+    "payload.personal_data.post_address.phone"() {
+      this.payload.personal_data.post_address.phone = Number(
+        this.payload.personal_data.post_address.phone
       );
     },
     "payload.personal_data.id_number"() {
