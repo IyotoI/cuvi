@@ -1,5 +1,6 @@
 const getDefaultState = () => ({
   dataUser: null,
+  personalData: {},
 });
 
 export const state = () => ({
@@ -37,5 +38,8 @@ export const actions = {
 export const getters = {
   dataUser({ dataUser }) {
     return dataUser;
+  },
+  personalData({ personalData }) {
+    return personalData;
   },
 };

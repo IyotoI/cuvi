@@ -17,8 +17,8 @@ export const LoginController = {
     },
 
     register: async (payload) => {
-      const { data } = await $nuxt.$api.post("auth/register", payload);
-      const token = data.data.token;
+      const res = await $nuxt.$api.post("auth/register", payload);
+      const token = res.data.data.token;
       if (token) {
         $nuxt.$router.push({ name: "login" });
       }

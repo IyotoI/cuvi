@@ -65,7 +65,7 @@
 
 <script>
 import { CuviController } from "~/controllers/cuvi.controller";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data() {
@@ -80,9 +80,15 @@ export default {
 
     if (dataUser !== null) {
       this.isPersonalInformation = false;
+      this.actUpdateValue({
+        key: "personalData",
+        value: dataUser.personal_data,
+      });
     }
   },
   methods: {
+    ...mapActions("localStorage", ["actUpdateValue"]),
+
     getCuvi: CuviController.get.cuvi,
 
     selectForm(val) {

@@ -76,8 +76,8 @@
       <v-col cols="12">
         <FormSelect
           :items="items.militaryCardType"
-          :model.sync="payload.personal_data.military_card.tipo"
-          :rules="rules.military_card.tipo"
+          :model.sync="payload.personal_data.military_card.type"
+          :rules="rules.military_card.type"
           label="Tipo"
         />
       </v-col>
@@ -102,7 +102,7 @@
       <v-col cols="12">
         <CalendarInput
           label="Fecha de nacimiento"
-          :model.sync="dateOfBirth"
+          :model.sync="payload.personal_data.date_place_birth.date"
           :rules="rules.date_place_birth_place.date"
         />
         <!-- <FormInput
@@ -196,6 +196,7 @@
 <script>
 import { CuviController } from "~/controllers/cuvi.controller";
 import { Regex } from "~/plugins/regex.js";
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -232,7 +233,7 @@ export default {
         nacionality: [(v) => !!v || "La nacionalidad es requerida"],
         country: [(v) => !!v || "El pais es requerido"],
         military_card: {
-          tipo: [(v) => !!v || "El tipo de libreta es requerido"],
+          type: [(v) => !!v || "El tipo de libreta es requerido"],
           number: [
             (v) => !!v || "El numero es requerido",
             (v) => Regex.onlyNumbers.test(v) || "Solo se aceptan números",
@@ -296,16 +297,12 @@ export default {
           nacionality: "",
           country: "",
           military_card: {
-            tipo: "",
+            type: "",
             number: "",
-            dm: "",
+            dm: "", // 3 caracteres
           },
           date_place_birth: {
-            date: {
-              day: "",
-              month: "",
-              year: "",
-            },
+            date: "",
             place: {
               country: "",
               depto: "",
@@ -335,16 +332,22 @@ export default {
       this.postCuvi(this.payload);
     },
   },
+  computed: {
+    ...mapGetters("localStorage", ["personalData"]),
+  },
+  mounted() {
+    Object.assign(this.payload.personal_data, this.personalData);
+  },
   watch: {
-    dateOfBirth(val) {
-      const obj = {
-        day: val.split("-")[2],
-        month: val.split("-")[1],
-        year: val.split("-")[0],
-      };
+    // dateOfBirth(val) {
+    //   const obj = {
+    //     day: val.split("-")[2],
+    //     month: val.split("-")[1],
+    //     year: val.split("-")[0],
+    //   };
 
-      this.payload.personal_data.date_place_birth.date = obj;
-    },
+    //   this.payload.personal_data.date_place_birth.date = obj;
+    // },
     "payload.personal_data.correspondence_address.phone"() {
       this.payload.personal_data.correspondence_address.phone = Number(
         this.payload.personal_data.correspondence_address.phone
