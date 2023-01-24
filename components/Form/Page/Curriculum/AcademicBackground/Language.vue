@@ -1,39 +1,73 @@
 <template>
-  <v-form>
+  <v-form v-model="isFormValid" @submit.prevent="sendForm">
     <v-row>
       <v-col cols="12" class="mb-n4">
-        <FormSelect label="Idioma" />
+        <FormSelect
+          :items="items.language"
+          label="Idioma"
+          :model.sync="itemPayload.language"
+          :rules="rules.language"
+        />
       </v-col>
       <v-col cols="12" class="mb-n4">
-        <FormSelect label="Nivel" />
+        <FormSelect
+          :items="items.level"
+          label="Nivel"
+          :model.sync="itemPayload.level"
+          :rules="rules.level"
+        />
       </v-col>
 
       <v-col cols="12" class="mb-n4 d-flex justify-end mt-3">
         <Button
-          class="white--text mr-2"
-          label="Cancelar"
-          color="secondary"
           @action="closeDialog"
+          class="white--text mr-2"
+          color="secondary"
+          label="Cancelar"
         />
-        <Button class="white--text" label="Guardar" color="#5FA52D" />
+        <Button
+          class="white--text"
+          color="#5FA52D"
+          :disabled="!isFormValid"
+          label="Guardar"
+          type="submit"
+        />
       </v-col>
-      <!-- <v-col cols="12">
-      <FormInput label="Dirección de correspondencia" />
-    </v-col> -->
     </v-row>
   </v-form>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      isFormValid: true,
+      itemPayload: {
+        language: null,
+        level: null,
+      },
+      items: {
+        language: ["ingles", "frances"],
+        level: ["lo hablo", "lo leo", "lo escribo"],
+      },
+      rules: {
+        language: [(v) => !!v || "El lenguaje es requerido"],
+        level: [(v) => !!v || "El nivel es requerido"],
+      },
+    };
+  },
   methods: {
     closeDialog() {
       $nuxt.$emit("dialog", {
         isDialog: false,
       });
     },
+    sendForm() {
+      this.cleanForm();
+    },
+    cleanForm() {
+      this.itemPayload = {};
+    },
   },
 };
 </script>
-
-<style></style>

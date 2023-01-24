@@ -82,7 +82,7 @@ export default {
       this.isPersonalInformation = false;
       this.actUpdateValue({
         key: "personalData",
-        value: dataUser.personal_data,
+        value: dataUser,
       });
     }
   },

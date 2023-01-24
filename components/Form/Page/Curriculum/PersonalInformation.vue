@@ -4,69 +4,69 @@
       <!-- Datos personales -->
       <v-col cols="12">
         <FormInput
+          label="Foto"
           :model.sync="payload.personal_data.photo"
           :rules="rules.photo"
-          label="Foto"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Primer apellido"
           :model.sync="payload.personal_data.first_secondname"
           :rules="rules.first_secondname"
-          label="Primer apellido"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Segundo apellido (o de casada)"
           :model.sync="payload.personal_data.second_secondname"
           :rules="rules.second_secondname"
-          label="Segundo apellido (o de casada)"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Nombre"
           :model.sync="payload.personal_data.name"
           :rules="rules.name"
-          label="Nombre"
         />
       </v-col>
       <v-col cols="12">
         <FormSelect
-          :model.sync="payload.personal_data.typeid"
           :items="items.typeid"
-          :rules="rules.typeid"
           label="Tipo de documento"
+          :model.sync="payload.personal_data.typeid"
+          :rules="rules.typeid"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Documento"
           :model.sync="payload.personal_data.id_number"
           :rules="rules.id_number"
-          label="Documento"
         />
       </v-col>
       <v-col cols="12">
         <FormSelect
+          :items="items.sex"
+          label="Sexo"
           :model.sync="payload.personal_data.sex"
           :rules="rules.sex"
-          label="Sexo"
-          :items="items.sex"
         />
       </v-col>
       <v-col cols="12">
         <FormSelect
-          :model.sync="payload.personal_data.nacionality"
           :items="items.nacionality"
-          :rules="rules.nacionality"
           label="Nacionalidad"
+          :model.sync="payload.personal_data.nacionality"
+          :rules="rules.nacionality"
         />
       </v-col>
       <v-col cols="12">
         <FormSelect
-          :model.sync="payload.personal_data.country"
           :items="items.country"
-          :rules="rules.country"
           label="Pais"
+          :model.sync="payload.personal_data.country"
+          :rules="rules.country"
         />
       </v-col>
       <!-- Libreta militar -->
@@ -76,23 +76,23 @@
       <v-col cols="12">
         <FormSelect
           :items="items.militaryCardType"
+          label="Tipo"
           :model.sync="payload.personal_data.military_card.type"
           :rules="rules.military_card.type"
-          label="Tipo"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Numero"
           :model.sync="payload.personal_data.military_card.number"
           :rules="rules.military_card.number"
-          label="Numero"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="DM"
           :model.sync="payload.personal_data.military_card.dm"
           :rules="rules.military_card.dm"
-          label="DM"
         />
       </v-col>
       <!-- Fecha y lugar de nacimiento -->
@@ -105,32 +105,27 @@
           :model.sync="payload.personal_data.date_place_birth.date"
           :rules="rules.date_place_birth_place.date"
         />
-        <!-- <FormInput
-          :model.sync="dateOfBirth"
-          :rules="rules.date_place_birth_place.date"
-          label="Fecha de nacimiento"
-        /> -->
       </v-col>
       <v-col cols="12">
         <FormSelect
           :items="items.country"
+          label="Pais"
           :model.sync="payload.personal_data.date_place_birth.place.country"
           :rules="rules.date_place_birth_place.country"
-          label="Pais"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Departamento"
           :model.sync="payload.personal_data.date_place_birth.place.depto"
           :rules="rules.date_place_birth_place.depto"
-          label="Departamento"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Municipio"
           :model.sync="payload.personal_data.date_place_birth.place.municipio"
           :rules="rules.date_place_birth_place.municipio"
-          label="Municipio"
         />
       </v-col>
       <!-- Dirección de correspondecia -->
@@ -139,54 +134,54 @@
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Dirección"
           :model.sync="payload.personal_data.post_address.address"
           :rules="rules.post_address.address"
-          label="Dirección"
         />
       </v-col>
       <v-col cols="12">
         <FormSelect
           :items="items.country"
+          label="Pais"
           :model.sync="payload.personal_data.post_address.country"
           :rules="rules.post_address.country"
-          label="Pais"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Departamento"
           :model.sync="payload.personal_data.post_address.depto"
           :rules="rules.post_address.depto"
-          label="Departamento"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Municipio"
           :model.sync="payload.personal_data.post_address.municipio"
           :rules="rules.post_address.municipio"
-          label="Municipio"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Telefono"
           :model.sync="payload.personal_data.post_address.phone"
           :rules="rules.post_address.phone"
-          label="Telefono"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
+          label="Correo"
           :model.sync="payload.personal_data.post_address.email"
           :rules="rules.post_address.email"
-          label="Correo"
         />
       </v-col>
       <v-col cols="12" class="d-flex justify-center">
         <Button
-          :disabled="!isFormValid"
           class="white--text"
-          type="submit"
-          label="Guardar"
           color="#5FA52D"
+          :disabled="!isFormValid"
+          label="Guardar"
+          type="submit"
         />
       </v-col>
     </v-row>
@@ -201,13 +196,13 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      dateOfBirth: "",
       isFormValid: true,
+      dateOfBirth: "",
       items: {
         typeid: ["cc", "ce", "pas"],
         sex: ["m", "f"],
         militaryCardType: ["primera", "segunda"],
-        country: ["Colombia"],
+        country: ["colombia"],
         nacionality: ["col", "extranjero"],
       },
       rules: {
@@ -331,14 +326,17 @@ export default {
     sendForm() {
       this.postCuvi(this.payload);
     },
+    cleanForm() {
+      this.payload = {};
+    },
   },
   computed: {
     ...mapGetters("localStorage", ["personalData"]),
   },
-  mounted() {
-    const object = JSON.parse(JSON.stringify(this.personalData));
-    this.payload.personal_data = object;
-  },
+  // mounted() {
+  //   const object = JSON.parse(JSON.stringify(this.personalData));
+  //   this.payload.personal_data = object;
+  // },
   watch: {
     "payload.personal_data.post_address.phone"() {
       this.payload.personal_data.post_address.phone = Number(

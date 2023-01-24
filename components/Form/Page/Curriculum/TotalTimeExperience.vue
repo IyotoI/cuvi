@@ -1,29 +1,35 @@
 <template>
-  <v-form>
+  <v-form v-model="isFormValid" @submit.prevent="sendForm">
     <v-row dense>
-      <!-- <v-col cols="12" class="mb-6">
-        <Button
-          class="white--text"
-          block
-          label="Añadir tiempo total de experiencia"
-          color="#5FA52D"
-        />
-      </v-col> -->
       <v-col cols="12">
-        <FormSelect label="Ocupacion" />
+        <FormInput
+          label="Ocupacion"
+          :model.sync="itemPayload.occupation"
+          :rules="rules.occupation"
+        />
       </v-col>
       <v-col cols="12">
-        <FormSelect label="Tiempo de experiencia" />
+        <FormInput
+          label="Tiempo de experiencia"
+          :model.sync="itemPayload.timeExperience"
+          :rules="rules.timeExperience"
+        />
       </v-col>
 
       <v-col cols="12" class="mb-n4 d-flex justify-end mt-3">
         <Button
-          class="white--text mr-2"
-          label="Cancelar"
           @action="closeDialog"
+          class="white--text mr-2"
           color="secondary"
+          label="Cancelar"
         />
-        <Button class="white--text" label="Guardar" color="#5FA52D" />
+        <Button
+          class="white--text"
+          color="#5FA52D"
+          :disabled="!isFormValid"
+          label="Guardar"
+          type="submit"
+        />
       </v-col>
     </v-row>
   </v-form>
@@ -31,11 +37,30 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isFormValid: true,
+      itemPayload: {
+        occupation: null,
+        timeExperience: null,
+      },
+      rules: {
+        occupation: [(v) => !!v || "La ocupacion es requerida"],
+        timeExperience: [(v) => !!v || "El tiempo de experiencia es requerido"],
+      },
+    };
+  },
   methods: {
     closeDialog() {
       $nuxt.$emit("dialog", {
         isDialog: false,
       });
+    },
+    sendForm() {
+      this.cleanForm();
+    },
+    cleanForm() {
+      this.itemPayload = {};
     },
   },
 };
