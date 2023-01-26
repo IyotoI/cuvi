@@ -5,28 +5,29 @@
       <v-col cols="12">
         <FormInput
           label="Foto"
-          :model.sync="payload.personal_data.photo"
+          :model.sync="curriculumItemPersonalDataPhoto"
           :rules="rules.photo"
         />
       </v-col>
+
       <v-col cols="12">
         <FormInput
           label="Primer apellido"
-          :model.sync="payload.personal_data.first_secondname"
+          :model.sync="curriculumItemPersonalDataFirstSecondname"
           :rules="rules.first_secondname"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="Segundo apellido (o de casada)"
-          :model.sync="payload.personal_data.second_secondname"
+          :model.sync="curriculumItemPersonalDataSecondSecondname"
           :rules="rules.second_secondname"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="Nombre"
-          :model.sync="payload.personal_data.name"
+          :model.sync="curriculumItemPersonalDataName"
           :rules="rules.name"
         />
       </v-col>
@@ -34,22 +35,23 @@
         <FormSelect
           :items="items.typeid"
           label="Tipo de documento"
-          :model.sync="payload.personal_data.typeid"
+          :model.sync="curriculumItemPersonalDataTypeId"
           :rules="rules.typeid"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="Documento"
-          :model.sync="payload.personal_data.id_number"
+          :model.sync="curriculumItemPersonalDataIdNumber"
           :rules="rules.id_number"
+          type="number"
         />
       </v-col>
       <v-col cols="12">
         <FormSelect
           :items="items.sex"
           label="Sexo"
-          :model.sync="payload.personal_data.sex"
+          :model.sync="curriculumItemPersonalDataSex"
           :rules="rules.sex"
         />
       </v-col>
@@ -57,7 +59,7 @@
         <FormSelect
           :items="items.nacionality"
           label="Nacionalidad"
-          :model.sync="payload.personal_data.nacionality"
+          :model.sync="curriculumItemPersonalDataNacionality"
           :rules="rules.nacionality"
         />
       </v-col>
@@ -65,7 +67,7 @@
         <FormSelect
           :items="items.country"
           label="Pais"
-          :model.sync="payload.personal_data.country"
+          :model.sync="curriculumItemPersonalDataCountry"
           :rules="rules.country"
         />
       </v-col>
@@ -77,21 +79,22 @@
         <FormSelect
           :items="items.militaryCardType"
           label="Tipo"
-          :model.sync="payload.personal_data.military_card.type"
+          :model.sync="curriculumItemPersonalDataMilitaryCardType"
           :rules="rules.military_card.type"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="Numero"
-          :model.sync="payload.personal_data.military_card.number"
+          :model.sync="curriculumItemPersonalDataMilitaryCardNumber"
           :rules="rules.military_card.number"
+          type="number"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="DM"
-          :model.sync="payload.personal_data.military_card.dm"
+          :model.sync="curriculumItemPersonalDataMilitaryCardDM"
           :rules="rules.military_card.dm"
         />
       </v-col>
@@ -102,7 +105,7 @@
       <v-col cols="12">
         <CalendarInput
           label="Fecha de nacimiento"
-          :model.sync="payload.personal_data.date_place_birth.date"
+          :model.sync="curriculumItemPersonalDataDatePlaceBirthDate"
           :rules="rules.date_place_birth_place.date"
         />
       </v-col>
@@ -110,21 +113,21 @@
         <FormSelect
           :items="items.country"
           label="Pais"
-          :model.sync="payload.personal_data.date_place_birth.place.country"
+          :model.sync="curriculumItemPersonalDataDatePlaceBirthPlaceCountry"
           :rules="rules.date_place_birth_place.country"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="Departamento"
-          :model.sync="payload.personal_data.date_place_birth.place.depto"
+          :model.sync="curriculumItemPersonalDataDatePlaceBirthPlaceDepto"
           :rules="rules.date_place_birth_place.depto"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="Municipio"
-          :model.sync="payload.personal_data.date_place_birth.place.municipio"
+          :model.sync="curriculumItemPersonalDataDatePlaceBirthPlaceMunicipio"
           :rules="rules.date_place_birth_place.municipio"
         />
       </v-col>
@@ -135,7 +138,7 @@
       <v-col cols="12">
         <FormInput
           label="Dirección"
-          :model.sync="payload.personal_data.post_address.address"
+          :model.sync="curriculumItemPersonalDataPostAddressAddress"
           :rules="rules.post_address.address"
         />
       </v-col>
@@ -143,38 +146,40 @@
         <FormSelect
           :items="items.country"
           label="Pais"
-          :model.sync="payload.personal_data.post_address.country"
+          :model.sync="curriculumItemPersonalDataPostAddressCountry"
           :rules="rules.post_address.country"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="Departamento"
-          :model.sync="payload.personal_data.post_address.depto"
+          :model.sync="curriculumItemPersonalDataPostAddressDepto"
           :rules="rules.post_address.depto"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="Municipio"
-          :model.sync="payload.personal_data.post_address.municipio"
+          :model.sync="curriculumItemPersonalDataPostAddressMunicipio"
           :rules="rules.post_address.municipio"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="Telefono"
-          :model.sync="payload.personal_data.post_address.phone"
+          :model.sync="curriculumItemPersonalDataPostAddressPhone"
           :rules="rules.post_address.phone"
+          type="number"
         />
       </v-col>
       <v-col cols="12">
         <FormInput
           label="Correo"
-          :model.sync="payload.personal_data.post_address.email"
+          :model.sync="curriculumItemPersonalDataPostAddressEmail"
           :rules="rules.post_address.email"
         />
       </v-col>
+
       <v-col cols="12" class="d-flex justify-center">
         <Button
           class="white--text"
@@ -189,9 +194,10 @@
 </template>
 
 <script>
-import { CuviController } from "~/controllers/cuvi.controller";
 import { Regex } from "~/plugins/regex.js";
-import { mapGetters } from "vuex";
+import { CuviController } from "~/controllers/cuvi.controller";
+import { propertiesGenerator } from "~/plugins/helpers";
+import { VModel_Curriculum_interface } from "~/interfaces/curriculum_interface";
 
 export default {
   data() {
@@ -280,40 +286,6 @@ export default {
           ],
         },
       },
-      payload: {
-        personal_data: {
-          photo: "",
-          first_secondname: "",
-          second_secondname: "",
-          name: "",
-          typeid: "",
-          id_number: "",
-          sex: "",
-          nacionality: "",
-          country: "",
-          military_card: {
-            type: "",
-            number: "",
-            dm: "", // 3 caracteres
-          },
-          date_place_birth: {
-            date: "",
-            place: {
-              country: "",
-              depto: "",
-              municipio: "",
-            },
-          },
-          post_address: {
-            address: "",
-            country: "",
-            depto: "",
-            municipio: "",
-            phone: "",
-            email: "",
-          },
-        },
-      },
     };
   },
   methods: {
@@ -324,30 +296,14 @@ export default {
     },
 
     sendForm() {
-      this.postCuvi(this.payload);
-    },
-    cleanForm() {
-      this.payload = {};
+      this.postCuvi(this.curriculumItem);
     },
   },
   computed: {
-    ...mapGetters("localStorage", ["personalData"]),
-  },
-  // mounted() {
-  //   const object = JSON.parse(JSON.stringify(this.personalData));
-  //   this.payload.personal_data = object;
-  // },
-  watch: {
-    "payload.personal_data.post_address.phone"() {
-      this.payload.personal_data.post_address.phone = Number(
-        this.payload.personal_data.post_address.phone
-      );
-    },
-    "payload.personal_data.id_number"() {
-      this.payload.personal_data.id_number = Number(
-        this.payload.personal_data.id_number
-      );
-    },
+    ...propertiesGenerator([...VModel_Curriculum_interface], {
+      path: "curriculum_store",
+      mut: "curriculum_store/setProperty",
+    }),
   },
 };
 </script>

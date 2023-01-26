@@ -9,6 +9,7 @@
         @action="selectForm(1)"
       />
     </v-col>
+    <!-- {{ curriculumItemAcademicTrainingHighEducation }} -->
     <v-col cols="12" class="mb-6">
       <Button
         class="white--text"
@@ -31,6 +32,9 @@
 </template>
 
 <script>
+import { propertiesGenerator } from "~/plugins/helpers";
+import { VModel_Curriculum_interface } from "~/interfaces/curriculum_interface";
+
 export default {
   data() {
     return {
@@ -73,6 +77,12 @@ export default {
           break;
       }
     },
+  },
+  computed: {
+    ...propertiesGenerator([...VModel_Curriculum_interface], {
+      path: "curriculum_store",
+      mut: "curriculum_store/setProperty",
+    }),
   },
 };
 </script>

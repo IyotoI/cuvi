@@ -44,7 +44,7 @@
           @action="selectForm(3)"
         />
       </v-col>
-      <v-col cols="12">
+      <!-- <v-col cols="12">
         <Button
           label="Tiempo total de experiencia"
           block
@@ -53,7 +53,7 @@
           color="#5FA52D"
           @action="selectForm(4)"
         />
-      </v-col>
+      </v-col> -->
       <!-- Boton de imprimir -->
       <v-col cols="12">
         <Icon nameIcon="printer" large /><br />
@@ -74,20 +74,19 @@ export default {
       isPersonalInformation: true,
     };
   },
-  async created() {
+  async fetch() {
     const idUser = this.dataUser.user._id;
     const dataUser = await this.getCuvi(idUser);
-
     if (dataUser !== null) {
       this.isPersonalInformation = false;
       this.actUpdateValue({
-        key: "personalData",
+        key: "editedCurriculum",
         value: dataUser,
       });
     }
   },
   methods: {
-    ...mapActions("localStorage", ["actUpdateValue"]),
+    ...mapActions("curriculum_store", ["actUpdateValue"]),
 
     getCuvi: CuviController.get.cuvi,
 

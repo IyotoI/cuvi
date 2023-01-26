@@ -46,7 +46,11 @@ export default {
       this.localModel = val;
     },
     localModel(val) {
-      this.$emit("update:model", val);
+      let convertValue = val;
+      if (this.type === "number") {
+        convertValue = Number(val);
+      }
+      this.$emit("update:model", convertValue);
     },
   },
   data() {

@@ -64,6 +64,10 @@
 </template>
 
 <script>
+import { CuviController } from "~/controllers/cuvi.controller";
+import { propertiesGenerator } from "~/plugins/helpers";
+import { VModel_Curriculum_interface } from "~/interfaces/curriculum_interface";
+
 export default {
   data() {
     return {
@@ -92,17 +96,27 @@ export default {
     };
   },
   methods: {
+    putCuviEducationHigh: CuviController.put.cuvi.educationHigh,
+
     closeDialog() {
       $nuxt.$emit("dialog", {
         isDialog: false,
       });
     },
     sendForm() {
-      this.cleanForm();
+      this.curriculumItemAcademicTrainingHighEducation = [
+        ...this.curriculumItemAcademicTrainingHighEducation,
+        this.itemPayload,
+      ];
+      this.putCuviEducationHigh(this.curriculumItem);
+      this.closeDialog();
     },
-    cleanForm() {
-      this.itemPayload = {};
-    },
+  },
+  computed: {
+    ...propertiesGenerator([...VModel_Curriculum_interface], {
+      path: "curriculum_store",
+      mut: "curriculum_store/setProperty",
+    }),
   },
 };
 </script>

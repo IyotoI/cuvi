@@ -5,7 +5,7 @@
         <FormSelect
           :items="items.basicEducation"
           label="Educacion basica"
-          :model.sync="itemPayload.basicEducation"
+          :model.sync="curriculumItemAcademicTrainingBasicHalfEducationTitle"
           :rules="rules.basicEducation"
         />
       </v-col>
@@ -13,14 +13,16 @@
         <FormSelect
           :items="items.titleObtained"
           label="Titulo obtenido"
-          :model.sync="itemPayload.titleObtained"
+          :model.sync="curriculumItemAcademicTrainingBasicHalfEducationGrade"
           :rules="rules.titleObtained"
         />
       </v-col>
       <v-col cols="12" class="mb-n4">
         <CalendarInput
           label="Fecha de grado"
-          :model.sync="itemPayload.dateDegree"
+          :model.sync="
+            curriculumItemAcademicTrainingBasicHalfEducationDategrade
+          "
           :rules="rules.dateDegree"
         />
       </v-col>
@@ -44,6 +46,10 @@
 </template>
 
 <script>
+import { CuviController } from "~/controllers/cuvi.controller";
+import { propertiesGenerator } from "~/plugins/helpers";
+import { VModel_Curriculum_interface } from "~/interfaces/curriculum_interface";
+
 export default {
   data() {
     return {
@@ -65,17 +71,23 @@ export default {
     };
   },
   methods: {
+    putCuviEducationBasic: CuviController.put.cuvi.educationBasic,
+
     closeDialog() {
       $nuxt.$emit("dialog", {
         isDialog: false,
       });
     },
     sendForm() {
-      this.cleanForm();
+      this.putCuviEducationBasic(this.curriculumItem);
+      this.closeDialog();
     },
-    cleanForm() {
-      this.itemPayload = {};
-    },
+  },
+  computed: {
+    ...propertiesGenerator([...VModel_Curriculum_interface], {
+      path: "curriculum_store",
+      mut: "curriculum_store/setProperty",
+    }),
   },
 };
 </script>

@@ -38,6 +38,9 @@
 </template>
 
 <script>
+import { propertiesGenerator } from "~/plugins/helpers";
+import { VModel_Curriculum_interface } from "~/interfaces/curriculum_interface";
+
 export default {
   data() {
     return {
@@ -63,11 +66,19 @@ export default {
       });
     },
     sendForm() {
-      this.cleanForm();
+      this.curriculumItemAcademicTrainingLenguage = [
+        ...this.curriculumItemAcademicTrainingLenguage,
+        this.itemPayload,
+      ];
+
+      this.closeDialog();
     },
-    cleanForm() {
-      this.itemPayload = {};
-    },
+  },
+  computed: {
+    ...propertiesGenerator([...VModel_Curriculum_interface], {
+      path: "curriculum_store",
+      mut: "curriculum_store/setProperty",
+    }),
   },
 };
 </script>
