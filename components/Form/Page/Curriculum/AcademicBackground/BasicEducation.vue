@@ -2,19 +2,18 @@
   <v-form v-model="isFormValid" @submit.prevent="sendForm">
     <v-row>
       <v-col cols="12" class="mb-n4">
-        <FormSelect
-          :items="items.basicEducation"
-          label="Educacion basica"
+        <FormInput
+          label="Titulo obtenido"
           :model.sync="curriculumItemAcademicTrainingBasicHalfEducationTitle"
-          :rules="rules.basicEducation"
+          :rules="rules.titleObtained"
         />
       </v-col>
       <v-col cols="12" class="mb-n4">
         <FormSelect
-          :items="items.titleObtained"
-          label="Titulo obtenido"
+          :items="items.grade"
+          label="Grado cursado"
           :model.sync="curriculumItemAcademicTrainingBasicHalfEducationGrade"
-          :rules="rules.titleObtained"
+          :rules="rules.grade"
         />
       </v-col>
       <v-col cols="12" class="mb-n4">
@@ -54,18 +53,12 @@ export default {
   data() {
     return {
       isFormValid: true,
-      itemPayload: {
-        basicEducation: null,
-        titleObtained: null,
-        dateDegree: null,
-      },
       items: {
-        basicEducation: ["primaria", "secundaria", "media"],
-        titleObtained: ["bachiller"],
+        grade: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       },
       rules: {
-        basicEducation: [(v) => !!v || "La educacion basica es requerida"],
         titleObtained: [(v) => !!v || "El titulo obtenido es requerido"],
+        grade: [(v) => !!v || "El grado cursado es requerido"],
         dateDegree: [(v) => !!v || "La fecha de grado es requerida"],
       },
     };

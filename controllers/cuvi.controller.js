@@ -30,7 +30,7 @@ export const CuviController = {
   put: {
     cuvi: {
       educationBasic: async (payload) => {
-        const url = `cuvi/ei/${payload.id_user}`;
+        const url = `cuvi/ei/${payload._id}`;
         const data = await $nuxt.$api.put(url, payload);
         console.log(
           "🚀 ~ file: cuvi.controller.js:35 ~ educationBasic: ~ data",
@@ -38,7 +38,10 @@ export const CuviController = {
         );
       },
       educationHigh: async (payload) => {
-        const url = `cuvi/es/${payload.id_user}`;
+        const dataUser = $nuxt.$store.getters["localStorage/dataUser"];
+        $nuxt.$api.setHeader("Authorization", `Bearer ${dataUser.token}`);
+
+        const url = `cuvi/es/${payload._id}`;
         const data = await $nuxt.$api.put(url, payload);
         console.log(
           "🚀 ~ file: cuvi.controller.js:35 ~ educationBasic: ~ data",

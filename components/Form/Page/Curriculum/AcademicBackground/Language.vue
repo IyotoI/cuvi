@@ -3,18 +3,34 @@
     <v-row>
       <v-col cols="12" class="mb-n4">
         <FormSelect
-          :items="items.language"
+          :items="items.idiom"
           label="Idioma"
-          :model.sync="itemPayload.language"
-          :rules="rules.language"
+          :model.sync="itemPayload.idiom"
+          :rules="rules.idiom"
         />
       </v-col>
       <v-col cols="12" class="mb-n4">
         <FormSelect
-          :items="items.level"
-          label="Nivel"
-          :model.sync="itemPayload.level"
-          :rules="rules.level"
+          :items="items.languageLevel"
+          label="Lo habla"
+          :model.sync="itemPayload.to_speak"
+          :rules="rules.languageLevel"
+        />
+      </v-col>
+      <v-col cols="12" class="mb-n4">
+        <FormSelect
+          :items="items.languageLevel"
+          label="lo lee"
+          :model.sync="itemPayload.to_read"
+          :rules="rules.languageLevel"
+        />
+      </v-col>
+      <v-col cols="12" class="mb-n4">
+        <FormSelect
+          :items="items.languageLevel"
+          label="Lo escribe"
+          :model.sync="itemPayload.to_whrite"
+          :rules="rules.languageLevel"
         />
       </v-col>
 
@@ -46,16 +62,18 @@ export default {
     return {
       isFormValid: true,
       itemPayload: {
-        language: null,
-        level: null,
+        idiom: null,
+        to_speak: null,
+        to_read: null,
+        to_whrite: null,
       },
       items: {
-        language: ["ingles", "frances"],
-        level: ["lo hablo", "lo leo", "lo escribo"],
+        idiom: ["ingles", "frances"],
+        languageLevel: ["r", "b", "mb"],
       },
       rules: {
-        language: [(v) => !!v || "El lenguaje es requerido"],
-        level: [(v) => !!v || "El nivel es requerido"],
+        idiom: [(v) => !!v || "El idioma es requerido"],
+        languageLevel: [(v) => !!v || "El nivel es requerido"],
       },
     };
   },

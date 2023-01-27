@@ -43,7 +43,7 @@ export const Curriculum_interface = {
     lenguage: [],
   },
   /* Experiencia laboral */
-  work_experience: [],
+  // work_experience: [],
 };
 
 export const VModel_Curriculum_interface = [

@@ -13,6 +13,7 @@
           label="Semestres aprovados"
           :model.sync="itemPayload.approvedSemesters"
           :rules="rules.approvedSemesters"
+          type="number"
         />
       </v-col>
       <v-col cols="12" class="mb-n4">
@@ -42,6 +43,7 @@
           label="Tarjeta profesional"
           :model.sync="itemPayload.professionalCard"
           :rules="rules.professionalCard"
+          type="number"
         />
       </v-col>
       <v-col cols="12" class="mb-n4 d-flex justify-end mt-3">
@@ -67,6 +69,7 @@
 import { CuviController } from "~/controllers/cuvi.controller";
 import { propertiesGenerator } from "~/plugins/helpers";
 import { VModel_Curriculum_interface } from "~/interfaces/curriculum_interface";
+import { Regex } from "~/plugins/regex.js";
 
 export default {
   data() {
@@ -87,11 +90,15 @@ export default {
         academicModality: [(v) => !!v || "La modalidad academica es requerida"],
         approvedSemesters: [
           (v) => !!v || "Los semestres aprovados son requeridos",
+          (v) => Regex.onlyNumbers.test(v) || "Solo se aceptan números",
         ],
         graduate: [(v) => !!v || "El graduado es requerido"],
         nameStudies: [(v) => !!v || "El nombre de los estudios es requerido"],
         terminationDate: [(v) => !!v || "La fecha de terminacion es requerida"],
-        professionalCard: [(v) => !!v || "La tarjeta profesional es requerida"],
+        professionalCard: [
+          (v) => !!v || "La tarjeta profesional es requerida",
+          (v) => Regex.onlyNumbers.test(v) || "Solo se aceptan números",
+        ],
       },
     };
   },

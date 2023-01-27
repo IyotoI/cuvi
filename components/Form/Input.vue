@@ -9,7 +9,7 @@
     rounded
     color="none"
     :rules="rules"
-    :type="type"
+    :type="type === 'number' ? 'text' : type"
   ></v-text-field>
 </template>
 
