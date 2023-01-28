@@ -43,7 +43,7 @@ export const Curriculum_interface = {
     lenguage: [],
   },
   /* Experiencia laboral */
-  // work_experience: [],
+  work_experience: [],
 };
 
 export const VModel_Curriculum_interface = [
@@ -266,5 +266,12 @@ export const VModel_Curriculum_interface = [
     twoKey: "academic_training",
     threeKey: "lenguage",
     defaultValue: Curriculum_interface.academic_training.lenguage,
+  },
+  /* Experiencia laboral */
+  {
+    property: "curriculumItemAcademicWorkExperience",
+    oneKey: "editedCurriculum",
+    twoKey: "work_experience",
+    defaultValue: Curriculum_interface.work_experience,
   },
 ];

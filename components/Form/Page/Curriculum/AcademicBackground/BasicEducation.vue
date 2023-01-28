@@ -64,7 +64,7 @@ export default {
     };
   },
   methods: {
-    putCuviEducationBasic: CuviController.put.cuvi.educationBasic,
+    putCuvi: CuviController.put.cuvi,
 
     closeDialog() {
       $nuxt.$emit("dialog", {
@@ -72,7 +72,7 @@ export default {
       });
     },
     sendForm() {
-      this.putCuviEducationBasic(this.curriculumItem);
+      this.putCuvi(this.curriculumItem);
       this.closeDialog();
     },
   },

@@ -103,7 +103,7 @@ export default {
     };
   },
   methods: {
-    putCuviEducationHigh: CuviController.put.cuvi.educationHigh,
+    putCuvi: CuviController.put.cuvi,
 
     closeDialog() {
       $nuxt.$emit("dialog", {
@@ -115,7 +115,7 @@ export default {
         ...this.curriculumItemAcademicTrainingHighEducation,
         this.itemPayload,
       ];
-      this.putCuviEducationHigh(this.curriculumItem);
+      this.putCuvi(this.curriculumItem);
       this.closeDialog();
     },
   },

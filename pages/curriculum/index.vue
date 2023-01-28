@@ -34,7 +34,7 @@
           @action="selectForm(2)"
         />
       </v-col>
-      <!-- <v-col cols="12">
+      <v-col cols="12">
         <Button
           label="Experiencia laboral"
           block
@@ -43,7 +43,7 @@
           :disabled="isPersonalInformation"
           @action="selectForm(3)"
         />
-      </v-col> -->
+      </v-col>
       <!-- <v-col cols="12">
         <Button
           label="Tiempo total de experiencia"

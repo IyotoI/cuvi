@@ -28,29 +28,39 @@ export const CuviController = {
     // },
   },
   put: {
-    cuvi: {
-      educationBasic: async (payload) => {
-        const url = `cuvi/ei/${payload._id}`;
-        const data = await $nuxt.$api.put(url, payload);
-        console.log(
-          "🚀 ~ file: cuvi.controller.js:35 ~ educationBasic: ~ data",
-          data
-        );
-      },
-      educationHigh: async (payload) => {
-        const dataUser = $nuxt.$store.getters["localStorage/dataUser"];
-        $nuxt.$api.setHeader("Authorization", `Bearer ${dataUser.token}`);
+    // cuvi: {
+    //   educationBasic: async (payload) => {
+    //     const url = `cuvi/ei/${payload._id}`;
+    //     const data = await $nuxt.$api.put(url, payload);
+    //     console.log(
+    //       "🚀 ~ file: cuvi.controller.js:35 ~ educationBasic: ~ data",
+    //       data
+    //     );
+    //   },
+    //   educationHigh: async (payload) => {
+    //     const dataUser = $nuxt.$store.getters["localStorage/dataUser"];
+    //     $nuxt.$api.setHeader("Authorization", `Bearer ${dataUser.token}`);
 
-        const url = `cuvi/es/${payload._id}`;
-        const data = await $nuxt.$api.put(url, payload);
-        console.log(
-          "🚀 ~ file: cuvi.controller.js:35 ~ educationBasic: ~ data",
-          data
-        );
-      },
-      // educationLenguaje: (payload) => {
-      //   const url = `cuvi/ei/${payload}`
-      // },
+    //     const url = `cuvi/es/${payload._id}`;
+    //     const data = await $nuxt.$api.put(url, payload);
+    //     console.log(
+    //       "🚀 ~ file: cuvi.controller.js:35 ~ educationBasic: ~ data",
+    //       data
+    //     );
+    //   },
+    //   workExperience
+    // educationLenguaje: (payload) => {
+    //   const url = `cuvi/ei/${payload}`
+    // },
+    // },
+    cuvi: async (payload) => {
+      const url = `cuvi/${payload._id}`;
+      const data = await $nuxt.$api.put(url, payload);
+      console.log("🚀 ~ file: cuvi.controller.js:59 ~ cuvi: ~ data", data);
+      // const dataUser = $nuxt.$store.getters["localStorage/dataUser"];
+      // $nuxt.$api.setHeader("Authorization", `Bearer ${dataUser.token}`);
+      // const { data } = await $nuxt.$api.get(`cuvi/${idCuvi}`);
+      // return data.data;
     },
   },
 };

@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import { CuviController } from "~/controllers/cuvi.controller";
 import { propertiesGenerator } from "~/plugins/helpers";
 import { VModel_Curriculum_interface } from "~/interfaces/curriculum_interface";
 
@@ -78,6 +79,8 @@ export default {
     };
   },
   methods: {
+    putCuvi: CuviController.put.cuvi,
+
     closeDialog() {
       $nuxt.$emit("dialog", {
         isDialog: false,
@@ -88,7 +91,7 @@ export default {
         ...this.curriculumItemAcademicTrainingLenguage,
         this.itemPayload,
       ];
-
+      this.putCuvi(this.curriculumItem);
       this.closeDialog();
     },
   },
