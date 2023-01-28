@@ -42,7 +42,14 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
-    "nuxt-vuex-localstorage",
+    // "nuxt-vuex-localstorage",
+    [
+      "nuxt-vuex-localstorage",
+      {
+        localStorage: ["localStorage", "curriculum_store"], //  If not entered, “localStorage” is the default value
+        // sessionStorage: ['sfoo', 'sbar']  //  If not entered, “sessionStorage” is the default value
+      },
+    ],
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
