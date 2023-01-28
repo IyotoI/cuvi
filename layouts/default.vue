@@ -34,9 +34,10 @@ export default {
     return {
       // itemsNavigation: ["account", "factory", "forum", "exit-to-app"],
       itemsNavigation: [
-        // { icon: "account", route: "a" },
+        { icon: "account", route: "curriculum" },
         // { icon: "factory", route: "b" },
         // { icon: "forum", route: "c" },
+        { icon: "clipboard-list", route: "formTest" },
         { icon: "exit-to-app", route: "login" },
       ],
       group: null,
