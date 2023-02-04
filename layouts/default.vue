@@ -6,6 +6,7 @@
           <!--  -->
         </div>
         <div>
+          <Loading />
           <Nuxt />
         </div>
         <div class="bottom-section">
